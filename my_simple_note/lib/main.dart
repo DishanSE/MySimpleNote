@@ -19,8 +19,7 @@ void main() async {
 class MySimpleNoteApp extends StatelessWidget {
   final ThemeProvider themeProvider;
 
-  const MySimpleNoteApp({Key? key, required this.themeProvider})
-      : super(key: key);
+  const MySimpleNoteApp({super.key, required this.themeProvider});
 
   @override
   Widget build(BuildContext context) {

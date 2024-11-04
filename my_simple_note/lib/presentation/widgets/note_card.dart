@@ -8,11 +8,11 @@ class NoteCard extends StatelessWidget {
   final VoidCallback onDelete;
 
   const NoteCard({
-    Key? key,
+    super.key,
     required this.note,
     required this.onTap,
     required this.onDelete,
-  }) : super(key: key);
+  });
 
   String _getPreviewText(String content) {
     if (content.length > 100) {

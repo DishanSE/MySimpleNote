@@ -6,7 +6,7 @@ import 'edit_note_screen.dart';
 import '../providers/theme_provider.dart';
 
 class NotesScreen extends StatefulWidget {
-  const NotesScreen({Key? key}) : super(key: key);
+  const NotesScreen({super.key});
 
   @override
   State<NotesScreen> createState() => _NotesScreenState();
@@ -129,8 +129,8 @@ class _NotesScreenState extends State<NotesScreen> {
             ),
           );
         },
-        child: const Icon(Icons.add),
         elevation: isDark ? 4.0 : 2.0,
+        child: const Icon(Icons.add),
       ),
     );
   }

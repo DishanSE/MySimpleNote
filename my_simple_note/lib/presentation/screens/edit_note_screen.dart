@@ -6,7 +6,7 @@ import '../viewmodels/note_viewmodel.dart';
 class EditNoteScreen extends StatefulWidget {
   final Note? note;
 
-  const EditNoteScreen({Key? key, this.note}) : super(key: key);
+  const EditNoteScreen({super.key, this.note});
 
   @override
   State<EditNoteScreen> createState() => _EditNoteScreenState();
