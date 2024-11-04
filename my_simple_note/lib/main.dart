@@ -2,31 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../presentation/viewmodels/note_viewmodel.dart';
 import '../presentation/screens/notes_screen.dart';
+import '../presentation/providers/theme_provider.dart';
+import '../config/themes.dart';
 
-void main() {
-  runApp(const MySimpleNoteApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final themeProvider = ThemeProvider();
+  await themeProvider.themePreferences.getTheme().then((value) {
+    themeProvider.darkTheme = value;
+  });
+
+  runApp(MySimpleNoteApp(themeProvider: themeProvider));
 }
 
 class MySimpleNoteApp extends StatelessWidget {
-  const MySimpleNoteApp({Key? key}) : super(key: key);
+  final ThemeProvider themeProvider;
+
+  const MySimpleNoteApp({Key? key, required this.themeProvider})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => NoteViewModel(),
-      child: MaterialApp(
-        title: 'MySimpleNote',
-        theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          brightness: Brightness.light,
-          useMaterial3: true,
-          fontFamily: 'Roboto',
-          appBarTheme: const AppBarTheme(
-            elevation: 0,
-            centerTitle: true,
-          ),
-        ),
-        home: const NotesScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NoteViewModel()),
+        ChangeNotifierProvider.value(value: themeProvider),
+      ],
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            title: 'MySimpleNote',
+            theme: Themes.light,
+            darkTheme: Themes.dark,
+            themeMode:
+                themeProvider.darkTheme ? ThemeMode.dark : ThemeMode.light,
+            home: const NotesScreen(),
+          );
+        },
       ),
     );
   }
