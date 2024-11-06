@@ -100,18 +100,9 @@ class _NotesScreenState extends State<NotesScreen> {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: const Text('Note deleted'),
-                        backgroundColor:
-                            isDark ? Colors.grey[800] : Colors.grey[900],
-                        action: SnackBarAction(
-                          label: 'UNDO',
-                          textColor: Colors.deepPurpleAccent,
-                          onPressed: () {
-                            // Implement undo functionality if needed
-                            // viewModel.restoreNote(note);
-                          },
-                        ),
-                      ),
+                          content: const Text('Note deleted'),
+                          backgroundColor:
+                              isDark ? Colors.grey[800] : Colors.grey[900]),
                     );
                   }
                 },

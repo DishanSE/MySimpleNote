@@ -31,6 +31,7 @@ class MySimpleNoteApp extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'MySimpleNote',
             theme: Themes.light,
             darkTheme: Themes.dark,
